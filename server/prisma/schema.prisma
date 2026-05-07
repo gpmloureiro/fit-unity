@@ -1,13 +1,99 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String       @id @default(uuid())
+  email       String       @unique
+  name        String
+  password    String?
+  avatarUrl   String?
+  createdAt   DateTime     @default(now())
+  memberships Membership[]
+  activities  Activity[]
+  goals       Goal[]
+  messages    Message[]
+}
+
+model Community {
+  id               String               @id @default(uuid())
+  name             String
+  description      String?
+  createdAt        DateTime             @default(now())
+  memberships      Membership[]
+  sharedActivities CommunityActivity[]
+  challenges       CommunityChallenge[]
+  messages         Message[]
+}
+
+model Membership {
+  id          String    @id @default(uuid())
+  role        String    @default("member")
+  joinedAt    DateTime  @default(now())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  community   Community @relation(fields: [communityId], references: [id])
+  communityId String
+
+  @@unique([userId, communityId])
+}
+
+model Activity {
+  id          String              @id @default(uuid())
+  type        String
+  duration    Int
+  notes       String?
+  date        DateTime            @default(now())
+  user        User                @relation(fields: [userId], references: [id])
+  userId      String
+  challenge   CommunityChallenge? @relation(fields: [challengeId], references: [id])
+  challengeId String?
+  sharedTo    CommunityActivity[]
+}
+
+model CommunityActivity {
+  id          String    @id @default(uuid())
+  sharedAt    DateTime  @default(now())
+  activity    Activity  @relation(fields: [activityId], references: [id])
+  activityId  String
+  community   Community @relation(fields: [communityId], references: [id])
+  communityId String
+
+  @@unique([activityId, communityId])
+}
+
+model CommunityChallenge {
+  id          String     @id @default(uuid())
+  title       String
+  description String?
+  type        String
+  targetValue Int?
+  startsAt    DateTime?
+  endsAt      DateTime?
+  community   Community  @relation(fields: [communityId], references: [id])
+  communityId String
+  activities  Activity[]
+}
+
+model Message {
+  id          String    @id @default(uuid())
+  content     String
+  sentAt      DateTime  @default(now())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  community   Community @relation(fields: [communityId], references: [id])
+  communityId String
+}
+
+model Goal {
+  id     String @id @default(uuid())
+  type   String
+  target Int
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 }
