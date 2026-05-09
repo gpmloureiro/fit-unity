@@ -6,11 +6,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// const authRoutes = require('./routes/auth');
+const authRoutes = require('./routes/auth');
 // const communityRoutes = require('./routes/communities');
 // const activityRoutes = require('./routes/activities');
 
-// app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 // app.use('/api/communities', communityRoutes);
 // app.use('/api/activities', activityRoutes);
 
