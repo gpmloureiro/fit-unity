@@ -1,0 +1,273 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.btn {
+  padding: 9px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s;
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-accent:hover {
+  background: var(--accent-hover);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.btn-outline:hover {
+  background: var(--bg);
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .week-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .week-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.day-card {
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 0.85rem;
+  min-height: 110px;
+}
+
+.day-card.today {
+  border-color: var(--accent);
+}
+
+.day-name {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.day-card.today .day-name {
+  color: var(--accent);
+}
+
+.day-activity {
+  font-size: 12px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 6px;
+  padding: 4px 7px;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.day-rest {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.day-add {
+  font-size: 20px;
+  color: var(--border);
+  cursor: pointer;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.day-add:hover {
+  color: var(--accent);
+}
+
+.exercises-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exercise-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.exercise-icon {
+  font-size: 24px;
+  width: 44px;
+  height: 44px;
+  background: var(--accent-light);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.exercise-info {
+  flex: 1;
+}
+
+.exercise-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.exercise-detail {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 3px;
+}
+
+.exercise-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-icon {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.btn-icon:hover {
+  background: var(--bg);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.modal {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 1.75rem;
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  background: var(--bg);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--accent);
+}
+
+.type-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.type-option {
+  padding: 10px 6px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  text-align: center;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--bg);
+  transition: all 0.15s;
+}
+
+.type-option:hover,
+.type-option.selected {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.type-option span {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
