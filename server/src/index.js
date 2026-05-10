@@ -1,10 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const prisma = require('./lib/prisma');
-
+const passport = require('./lib/passport');
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(passport.initialize());
 
 const authRoutes = require('./routes/auth');
 // const communityRoutes = require('./routes/communities');

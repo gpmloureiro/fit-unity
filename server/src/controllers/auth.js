@@ -18,10 +18,9 @@ const register = async (req, res) => {
 
   try {
     const existing = await prisma.user.findUnique({ where: { email } })
-    if (existing) // If email is already registered, return error 409
+    if (existing)
       return res.status(409).json({ message: 'Email already in use' })
 
-    // Hash the password before saving to the database for security
     const hashed = await bcrypt.hash(password, 10)
 
     const user = await prisma.user.create({
@@ -67,4 +66,9 @@ const login = async (req, res) => {
   }
 }
 
-module.exports = { register, login }
+const googleCallback = (req, res) => {
+  const token = generateToken(req.user.id)
+  res.redirect(`${process.env.CLIENT_URL}/auth/callback?token=${token}`)
+}
+
+module.exports = { register, login, googleCallback }

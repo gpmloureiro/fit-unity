@@ -1,6 +1,7 @@
 import { Routes, Route, /**Navigate**/ } from 'react-router-dom'
 import Layout from './components/Layout'
 import LoginPage from './pages/LoginPage'
+import AuthCallbackPage from './pages/AuthCallbackPage'
 import HomePage from './pages/HomePage'
 import TrainPlanPage from './pages/TrainPlanPage'
 import ProgressPage from './pages/ProgressPage'
@@ -18,6 +19,7 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/auth/callback" element={<AuthCallbackPage />} />
       <Route path="/" element={<ProtectedLayout><HomePage /></ProtectedLayout>} />
       <Route path="/train" element={<ProtectedLayout><TrainPlanPage /></ProtectedLayout>} />
       <Route path="/progress" element={<ProtectedLayout><ProgressPage /></ProtectedLayout>} />

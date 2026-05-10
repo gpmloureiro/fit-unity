@@ -32,8 +32,7 @@ function LoginPage() {
       navigate('/')
 
     } catch (err) {
-      setError('Could not connect to server.')
-      console.log('Login error:', err)
+      setError('Could not connect to server. Error: ' + err.message)
     } finally {
       setLoading(false)
     }
@@ -76,6 +75,18 @@ function LoginPage() {
             {loading ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
+
+        <div className="login-divider">or</div>
+
+        <a href="http://localhost:3000/api/auth/google" className="btn-google">
+          <img
+            src="https://www.google.com/favicon.ico"
+            width="16"
+            height="16"
+            alt="Google"
+          />
+          Continue with Google
+        </a>
 
         <p className="login-footer">
           Don't have an account? <a href="/register">Register</a>
